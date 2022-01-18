@@ -1,0 +1,62 @@
+{% load static %}
+
+<style>
+.navbar a{
+  font-family: 'Roboto', sans-serif;
+}
+</style>
+
+<nav class="navbar navbar-expand-md navbar-dark">
+  <div class="container">
+    <div id="main-nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto" style="float: right">
+        {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'main' %}" class="nav-item nav-link active">
+              Home
+            </a>
+          </li>
+        {% else %}
+        {% endif %}
+        <li id="about_us">
+          <a href="#" class="nav-item nav-link active">
+            About Us
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+            <li>
+              <a href="#" class="nav-item nav-link">
+                Manage
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'homework:showlist' %}" class="nav-item nav-link">
+                Homework
+              </a>
+            </li>
+          {% endif %}
+          <li>
+            <a href="{% url 'account_logout' %}" class="nav-item nav-link">
+              Logout
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{% url 'account_login' %}" class="nav-item nav-link">
+              Login
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $('#about_us').click(function(){
+    $.fn.fullpage.moveTo(2, 2);
+  });
+</script>

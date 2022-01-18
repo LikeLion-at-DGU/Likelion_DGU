@@ -1,0 +1,54 @@
+body{
+  font-family: 'Russo One', sans-serif;
+}
+#fullpage{
+  width: 100%;
+  height: 100vh;
+}
+.section {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+.inner_div{
+  width: 85%;
+  margin: 0 auto;
+}
+.inner_div p{
+  color: white;
+  margin: 0;
+}
+#right_div {
+  width: 100%;
+  margin: 60px 0 0 0;
+  text-align: right;
+}
+#right_div h5 {
+  color: white;
+  font-size: 20px;
+}
+#dgu_img {
+  width: 215px;
+}
+#main_maxim {
+  color: white;
+  font-size: 73.3px;
+  font-weight: 300;
+}
+
+/* section 2 */
+.about_title {
+  color: white;
+  font-weight: 100;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+#dgu_photo {
+  width: 400px;
+}
+#dgu_member {
+  margin-top: 13px;
+}
+#dgu_member p {
+  font-size: 15px;
+}
