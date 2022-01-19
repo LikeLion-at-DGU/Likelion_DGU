@@ -2,5 +2,45 @@
 {% load static %}
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/hw_write.css' %}"/>
+
+<section id="section" class="d-flex flex-wrap align-content-center">
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %} {{ form.as_p }}
+      <div id="write_form">
+        <div class="row g-3 align-items-center mb-4">
+          <div class="col-3">
+            <label>제목 : </label>
+          </div>
+          <div class="col-7">
+            <input type="text" class="form-control input_area" placeholder="제목을 입력하세요"/>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center mb-4">
+          <div class="col-3">
+            <label>url : </label>
+          </div>
+          <div class="col-7">
+            <input type="text" class="form-control input_area" placeholder="url을 입력하세요"/>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-3">
+            <label> </label>
+          </div>
+          <div class="col-7 form-floating">
+            <textarea class="form-control input_area" style="height: 100px"></textarea>
+          </div>
+        </div>
+      </div>
+      <input
+        type="submit"
+        class="btn btn-secondary"
+        value="과제 제출하기"
+        style="float: right; margin: 15px; padding: 10px; font-size: 15px;" />
+    </form>
+  </div>
+</section>
 
 {% endblock %}
