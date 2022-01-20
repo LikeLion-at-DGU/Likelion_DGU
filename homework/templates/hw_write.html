@@ -7,14 +7,30 @@
 <section id="section" class="d-flex flex-wrap align-content-center">
   <div class="container">
     <form method="POST">
-      {% csrf_token %} {{ form.as_p }}
-      <div id="write_form">
+      <div id="write_form" style="height: 430px;">
+        <div class="homework" style="width: 100%; height: 140px;">
+          <h3 id="detail" style="color: white; padding-top: 20px;">{{ homework.title }}</h3>
+          <p style="color: white;">{{ homework.contents }}</p>
+        </div>
+        {% csrf_token %} {{ form.as_p }}
         <div class="row g-3 align-items-center mb-4">
           <div class="col-3">
             <label>제목 : </label>
           </div>
           <div class="col-7">
             <input type="text" class="form-control input_area" placeholder="제목을 입력하세요"/>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center mb-4">
+          <div class="col-3">
+            <label>과제 차시 : </label>
+          </div>
+          <div class="col-7">
+            <select class="form-select" aria-label="Default select example" style="font-size: 18px;">
+              {% for hw in all_hw %}
+              <option value="{{ hw.id }}">{{ hw.id }}</option>
+              {% endfor %}
+            </select>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-4">

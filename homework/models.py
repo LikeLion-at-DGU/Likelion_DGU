@@ -6,6 +6,9 @@ class Homework(models.Model):
   title = models.CharField(max_length=200)
   writer = models.ForeignKey(User, on_delete=models.CASCADE)
   contents = models.TextField()
+  
+  def __str__(self):
+    return self.title
 
 class Assignment(models.Model):
   hw_id = models.ForeignKey(Homework, on_delete=models.CASCADE, db_column="hw_id")
