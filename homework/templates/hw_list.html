@@ -14,14 +14,18 @@
           <th scope="col">번호</th>
           <th scope="col">글쓴이</th>
           <th scope="col">제목</th>
+          <th scope="col">날짜</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-        </tr>
+        {% for assign in assignments %}
+          <tr>
+            <th scope="row">{{ assign.id }}</th>
+            <td>{{ assign.writer }}</td>
+            <td>{{ assign.title }}</td>
+            <td>{{ assign.pub_date }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>  

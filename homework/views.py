@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import *
+from django.core.paginator import Paginator
 
 # 과제 show
 def showlist(request):
-  return render(request, 'hw_list.html')
+  assign = Assignment.objects.filter(writer=request.user).order_by('-pub_date')
+  paginatorAssign = Paginator(assign, 10)
+  page = request.GET.get('page')
+  assignments = paginatorAssign.get_page(page)
+  return render(request, 'hw_list.html', { 'assignments' : assignments })
 
 # 과제 작성 페이지
 def writehw(request):
