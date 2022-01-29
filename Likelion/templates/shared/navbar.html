@@ -17,12 +17,12 @@
             </a>
           </li>
         {% else %}
+          <li id="about_us">
+            <a href="#" class="nav-item nav-link active">
+              About Us
+            </a>
+          </li>
         {% endif %}
-        <li id="about_us">
-          <a href="#" class="nav-item nav-link active">
-            About Us
-          </a>
-        </li>
         {% if user.is_authenticated %}
           {% if user.is_superuser %}
             <li>

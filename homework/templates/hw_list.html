@@ -50,6 +50,36 @@
         {% endif %}
       </tbody>
     </table>
-  </div>  
+  </div>
+  <div class="page container">
+    {% if user.is_superuser %}
+      {% if all_assignments.has_previous %}
+        <a href="?page=1" style="color: white">1</a>
+        <a href="?page={{all_assignments.previous_page_number}}">◀</a>
+      {% endif %}
+      <span style="color: white">{{all_assignments.number}}</span>
+      <span style="color: white">of</span>
+      <span style="color: white">{{all_assignments.paginator.num_pages}}</span>
+  
+      {% if all_assignments.has_next %}
+        <a href="?page={{all_assignments.next_page_number}}">▶</a>
+        <a href="?page={{all_assignments.paginator.num_pages}}">{{all_assignments.paginator.num_pages}}</a>
+      {% endif %}
+    {% else %}
+      {% if assignments.has_previous %}
+        <a href="?page=1" style="color: white">1</a>
+        <a href="?page={{assignments.previous_page_number}}">◀</a>
+      {% endif %}
+  
+      <span>{{assignments.number}}</span>
+      <span>of</span>
+      <span>{{assignments.paginator.num_pages}}</span>
+  
+      {% if assignments.has_next %}
+        <a href="?page={{assignments.next_page_number}}">▶</a>
+        <a href="?page={{assignments.paginator.num_pages}}">{{assignments.paginator.num_pages}}</a>
+      {% endif %}
+    {% endif %}
+  </div>
 </section>
 {% endblock %}
