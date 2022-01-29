@@ -7,3 +7,12 @@ body {
   background-color: #000000;
   text-align: center;
 }
+.homework {
+  width: 100%;
+  height: 400px;
+  background-color: #333333;
+  border-radius: 10px;
+}
+.left_area {
+  font-size: 16px;
+}

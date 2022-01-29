@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import *
@@ -5,11 +6,21 @@ from django.core.paginator import Paginator
 
 # 과제 show
 def showlist(request):
+  # 유저별 과제
   assign = Assignment.objects.filter(writer=request.user).order_by('-pub_date')
+  # 멘토가 보는 모든 과제
+  all_assign = Assignment.objects.all().order_by('-pub_date')
   paginatorAssign = Paginator(assign, 10)
+  paginator_allAssign = Paginator(all_assign, 10)
   page = request.GET.get('page')
+  # 페이지 네이션 할당
   assignments = paginatorAssign.get_page(page)
-  return render(request, 'hw_list.html', { 'assignments' : assignments })
+  all_assignments = paginator_allAssign.get_page(page)
+  context = {
+    'assignments' : assignments,
+    'all_assignments' : all_assignments 
+  }
+  return render(request, 'hw_list.html', context)
 
 # 과제 작성 페이지
 def writehw(request):

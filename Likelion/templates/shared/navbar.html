@@ -26,7 +26,7 @@
         {% if user.is_authenticated %}
           {% if user.is_superuser %}
             <li>
-              <a href="#" class="nav-item nav-link">
+              <a href="{% url 'homework:showlist' %}" class="nav-item nav-link">
                 Manage
               </a>
             </li>
