@@ -19,3 +19,6 @@ class Assignment(models.Model):
   url = models.URLField(max_length=200)
   contents = models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
+  
+  def date_summary(self):
+    return str(self.pub_date)[0:11]
