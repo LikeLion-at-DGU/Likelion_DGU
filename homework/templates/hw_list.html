@@ -4,20 +4,24 @@
 <link rel="stylesheet" href="{% static 'css/hw_list.css' %}"/>
 
 <section id="section" class="d-flex flex-wrap align-content-center">
-  <div class="container">
+  <div class="container" style="font-family: 'Jua', sans-serif;">
     {% if not user.is_superuser %}
-      <a href="{% url 'homework:writehw' %}" class="btn btn-secondary" style="float: left; margin-bottom: 15px; padding: 10px; font-size: 15px;">
+    <h1 style="color: white;"> 나의 과제 제출 목록 </h1>
+    <br>
+      <a href="{% url 'homework:writehw' %}" class="btn btn-warning" style="float: left; margin-bottom: 15px; padding: 10px; font-size: 15px;">
         과제 제출하기
       </a>
+    {% else %}
+      <h1 style="color: white;"> 아기사자 과제 목록 </h1>
     {% endif %}
-    <table class="table table-dark table-hover">
+    <table class="table table-warning table-hover">
       <thead>
         <tr>
-          <th scope="col">번호</th>
-          <th scope="col">과제</th>
-          <th scope="col">글쓴이</th>
-          <th scope="col">제목</th>
-          <th scope="col">날짜</th>
+          <th scope="col" style="font-size: 18px;">번호</th>
+          <th scope="col" style="font-size: 18px;">과제</th>
+          <th scope="col" style="font-size: 18px;">글쓴이</th>
+          <th scope="col" style="font-size: 18px;">제목</th>
+          <th scope="col" style="font-size: 18px;">날짜</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +29,7 @@
           {% for assign in all_assignments %}
             <tr
               onclick="location.href='{% url 'homework:showdetail' assign.id %}'"
-              style="cursor: pointer"
-            >
+              style="cursor: pointer">
               <td scope="row">{{ assign.id }}</td>
               <td>{{ assign.hw_id }}</td>
               <td>{{ assign.writer }}</td>
@@ -51,7 +54,7 @@
       </tbody>
     </table>
   </div>
-  <div class="page container">
+  <div class="page container" style="font-size: 15px; color: white;">
     {% if user.is_superuser %}
       {% if all_assignments.has_previous %}
         <a href="?page=1" style="color: white">1</a>
