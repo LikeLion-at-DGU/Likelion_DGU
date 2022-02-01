@@ -42,6 +42,26 @@
           <div style="font-size: 16px">{{ assign.contents }}</div>
         </div>
       </div>
+      <div class="row g-3 align-items-center">
+        <div class="col-3">
+          <div class="left_area" style="font-size: 16px">작성시각 : </div>
+        </div>
+        <div class="col-7 form-floating">
+          <div style="font-size: 16px">{{ assign.pub_date }}</div>
+        </div>
+      </div>
+      <div class="row g-3 align-items-center">
+        <div class="col-3">
+          <div class="left_area" style="font-size: 16px">수정시각 :</div>
+        </div>
+        <div class="col-7 form-floating">
+          <div style="font-size: 16px">{{ assign.edit_date }}</div> 
+        </div>
+      </div>
+      <!-- Delete Homework -->
+      <a href="{% url 'homework:delete_assign' assign.pk %}" class="btn btn- danger">삭제하기</a>
+      <!-- Edit Homework -->
+      <a href="{% url 'homework:edit_assign' assign.pk %}" class="btn btn- primary">수정하기</a>
     </div>
   </div>
 </section>

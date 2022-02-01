@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import *
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 # 과제 show
 def showlist(request):
@@ -50,3 +51,23 @@ def createassign(request):
 def showdetail(request, assignment_id):
   assign = get_object_or_404(Assignment, id=assignment_id)
   return render(request, 'hw_detail.html', { 'assign': assign })
+
+#과제 삭제하기
+@login_required
+def delete_assign(request, assignment_id):
+  assign = get_object_or_404(Assignment, pk=assignment_id)
+  assign.delete()
+  return redirect('homework:showlist')
+
+#과제 수정하기
+@login_required
+def edit_assign(request, assignment_id):
+  assign = get_object_or_404(Assignment, pk=assignment_id)
+  if assign.writer == request.user:
+    if request.method == "POST":
+      assign.title = request.POST['title']
+      assign.url = request.POST['url']
+      assign.contents = request.POST['contents']
+      assign.save()
+      return redirect('homework:showdetail', assign.id )
+  return render(request, 'hw_edit.html', { 'assign':assign })
