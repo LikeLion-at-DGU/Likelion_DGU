@@ -10,9 +10,17 @@ body{
   height: 100vh;
   margin: 0;
 }
-.inner_div{
-  width: 85%;
-  margin: 0 auto;
+@media(min-height: 300px){
+  .inner_div{
+    width: 85%;
+    margin: 120px auto;
+  }
+}
+@media(min-height: 500px){
+  .inner_div{
+    width: 85%;
+    margin: 150px auto;
+  }
 }
 .inner_div p{
   color: white;
