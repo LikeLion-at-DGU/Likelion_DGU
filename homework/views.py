@@ -71,3 +71,17 @@ def edit_assign(request, assignment_id):
       assign.save()
       return redirect('homework:showdetail', assign.id )
   return render(request, 'hw_edit.html', { 'assign':assign })
+
+# 멘토 - 과제 작성 페이지
+def admin_writehw(request):
+  return render(request, 'admin_hw_create.html')
+
+# 멘토 - 과제 create
+def admin_createhw(request):
+  if request.method == "POST":
+    new_hw = Homework()
+    new_hw.title = request.POST.get('title')
+    new_hw.writer = request.user
+    new_hw.contents = request.POST.get('contents')
+    new_hw.save()
+  return redirect('homework:showlist')

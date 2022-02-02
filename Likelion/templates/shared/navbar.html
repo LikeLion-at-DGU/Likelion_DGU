@@ -30,6 +30,11 @@
                 Manage
               </a>
             </li>
+            <li>
+              <a href="{% url 'homework:admin_writehw' %}" class="nav-item nav-link">
+                CreateHW
+              </a>
+            </li>
           {% else %}
             <li>
               <a href="{% url 'homework:showlist' %}" class="nav-item nav-link">

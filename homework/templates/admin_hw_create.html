@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/hw_write.css' %}"/>
+
+<section id="section" class="d-flex flex-wrap align-content-center" style="font-family: 'Jua', sans-serif;">
+  <div class="container">
+    <div class="card border-warning">
+      <h1 class="card-header border-warning">과제 생성하기</h1>
+      <div class="card-body border-warning">
+        <h2 class="card-title"></h2>
+        <form method="POST" action="{% url 'homework:admin_createhw' %}">
+          {% csrf_token %} {{ form.as_p }}
+            <div class="row g-3 align-items-center mb-4">
+              <div class="col-2">
+              </div>
+              <div class="col-8">
+                <input type="text" name="title" class="form-control input_area" placeholder="제목을 입력하세요" />
+              </div>
+            </div>
+            
+            <div class="row g-3 align-items-center mb-4">
+              <div class="col-2">
+              </div>
+              <div class="col-8">
+                <textarea name="contents" class="form-control input_area" style="height: 100px"></textarea>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-warning" value="저장하기" style="width: 100px; margin: auto; font-size: 20px;"/>
+          <br>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
