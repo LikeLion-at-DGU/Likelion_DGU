@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hw_list.css' %}"/>
+
+<section id="section" class="d-flex flex-wrap align-content-center">
+  <div class="container" style="font-family: 'Jua', sans-serif;">
+    {% if not user.is_superuser %}
+    <h1 style="color: white;"> 주차별 과제 목록 </h1>
+    <br>
+    {% else %}
+      <h1 style="color: white;"> 주차별 과제 목록 </h1>
+      <br>
+      <a href="{% url 'homework:admin_writehw' %}" class="btn btn-warning" style="float: left; margin-bottom: 15px; padding: 10px; font-size: 15px;">
+        주차별 과제 생성하기
+      </a>
+    {% endif %}
+    <table class="table table-warning table-hover">
+      <thead>
+        <tr>
+          <th scope="col" style="font-size: 18px;">번호</th>
+          <th scope="col" style="font-size: 18px;">제목</th>
+          <th scope="col" style="font-size: 18px;">내용</th>
+          <th scope="col" style="font-size: 18px;">기한</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if user.is_authenticated %}
+          {% for homework in all_homeworks %}
+            <tr
+              onclick="location.href='{% url 'homework:admin_showdetail' homework.id %}'"
+              style="cursor: pointer">
+              <td scope="row">{{ homework.id }}</td>
+              <td>{{ homework.title }}</td>
+              <td>{{ homework.summary }}</td>
+              <td>{{ homework.endDate }}</td>
+            </tr>
+          {% endfor %}
+        
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+  <div class="page container" style="font-size: 15px; color: white;">
+    {% if user.is_authenticated %}
+      {% if all_homeworks.has_previous %}
+        <a href="?page=1" style="color: white">1</a>
+        <a href="?page={{all_assignments.previous_page_number}}">◀</a>
+      {% endif %}
+      <span style="color: white">{{all_homeworks.number}}</span>
+      <span style="color: white">of</span>
+      <span style="color: white">{{all_homeworks.paginator.num_pages}}</span>
+  
+      {% if all_homeworks.has_next %}
+        <a href="?page={{all_assignments.next_page_number}}">▶</a>
+        <a href="?page={{all_assignments.paginator.num_pages}}">{{all_homeworks.paginator.num_pages}}</a>
+      {% endif %}
+
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

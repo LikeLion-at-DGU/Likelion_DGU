@@ -82,6 +82,46 @@ def admin_createhw(request):
     new_hw = Homework()
     new_hw.title = request.POST.get('title')
     new_hw.writer = request.user
+    new_hw.endDate = request.POST.get('endDate')
     new_hw.contents = request.POST.get('contents')
     new_hw.save()
-  return redirect('homework:showlist')
+  return redirect('homework:admin_showlist')
+
+# 멘토 - 과제 show
+def admin_showlist(request):
+  # 멘토가 보는 모든 과제
+  all_hw = Homework.objects.all().order_by('-pub_date')
+  paginator_allHw = Paginator(all_hw, 10)
+  page = request.GET.get('page')
+  # 페이지 네이션 할당
+  all_homeworks = paginator_allHw.get_page(page)
+  context = {
+    'all_homeworks' : all_homeworks
+  }
+  return render(request, 'admin_hw_list.html', context)
+
+# 멘토 - 과제 detail
+def admin_showdetail(request, homework_id):
+  homework = get_object_or_404(Homework, id=homework_id)
+  return render(request, 'admin_hw_detail.html', { 'homework': homework })
+
+# 멘토 - 과제 수정하기
+@login_required
+def admin_edit(request, homework_id):
+  homework = get_object_or_404(Homework, pk=homework_id)
+  if homework.writer == request.user:
+    if request.method == "POST":
+      homework.title = request.POST['title']
+      homework.contents = request.POST['contents']
+      homework.endDate = request.POST['endDate']
+      homework.save()
+      return redirect('homework:admin_showdetail', homework.id )
+  return render(request, 'admin_hw_edit.html', { 'homework':homework })
+
+
+# 멘토 - 과제 삭제하기
+@login_required
+def admin_delete(request, homework_id):
+  homework = get_object_or_404(Homework, pk=homework_id)
+  homework.delete()
+  return redirect('homework:admin_showlist')
