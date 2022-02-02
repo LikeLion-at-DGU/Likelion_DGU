@@ -26,17 +26,18 @@
       </thead>
       <tbody>
         {% if user.is_authenticated %}
-          {% for homework in all_homeworks %}
-            <tr
-              onclick="location.href='{% url 'homework:admin_showdetail' homework.id %}'"
-              style="cursor: pointer">
-              <td scope="row">{{ homework.id }}</td>
-              <td>{{ homework.title }}</td>
-              <td>{{ homework.summary }}</td>
-              <td>{{ homework.endDate }}</td>
-            </tr>
-          {% endfor %}
-        
+          {% if all_homeworks %}
+            {% for homework in all_homeworks %}
+              <tr
+                onclick="location.href='{% url 'homework:admin_showdetail' homework.id %}'"
+                style="cursor: pointer">
+                <td scope="row">{{ homework.id }}</td>
+                <td>{{ homework.title }}</td>
+                <td>{{ homework.summary }}</td>
+                <td>{{ homework.endDate }}</td>
+              </tr>
+            {% endfor %}
+          {% endif %}
         {% endif %}
       </tbody>
     </table>
