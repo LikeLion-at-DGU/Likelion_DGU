@@ -6,10 +6,15 @@ class Homework(models.Model):
   id = models.AutoField(primary_key=True)
   title = models.CharField(max_length=200)
   writer = models.ForeignKey(User, on_delete=models.CASCADE)
+  endDate = models.CharField(max_length=200)
   contents = models.TextField()
-  
+  pub_date = models.DateTimeField(auto_now_add=True)
+
   def __str__(self):
     return self.title
+
+  def summary(self):
+    return str(self.contents)[:20]
 
 class Assignment(models.Model):
   id = models.AutoField(primary_key=True)

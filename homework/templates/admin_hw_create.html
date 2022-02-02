@@ -7,7 +7,7 @@
 <section id="section" class="d-flex flex-wrap align-content-center" style="font-family: 'Jua', sans-serif;">
   <div class="container">
     <div class="card border-warning">
-      <h1 class="card-header border-warning">과제 생성하기</h1>
+      <h1 class="card-header border-warning">(운영진)과제 생성하기</h1>
       <div class="card-body border-warning">
         <h2 class="card-title"></h2>
         <form method="POST" action="{% url 'homework:admin_createhw' %}">
@@ -17,6 +17,14 @@
               </div>
               <div class="col-8">
                 <input type="text" name="title" class="form-control input_area" placeholder="제목을 입력하세요" />
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-4">
+              <div class="col-2">
+              </div>
+              <div class="col-8">
+                <input type="text" name="endDate" class="form-control input_area" placeholder="N월 M일 00:00까지" />
               </div>
             </div>
             

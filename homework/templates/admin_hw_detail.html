@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/hw_detail.css' %}"/>
+
+<section id="section" class="d-flex flex-wrap align-content-center">
+  <div class="container" style="font-family: 'Jua', sans-serif;">
+    <div class="card text-center border-warning">
+      <div class="card-header border-warning">
+        <h1>{{ homework.title }}</h1>
+      </div>
+      <div class="card-body border-warning">
+        
+        <h3 class="card-text">{{ homework.contents }}</h3>
+        {% if user.is_superuser %}
+          <!-- Edit Homework -->
+          <a href="{% url 'homework:admin_edit' homework.pk %}" class="btn btn-warning" style="font-size: 15px;">수정하기</a>
+          <!-- Delete Homework -->
+          <a href="{% url 'homework:admin_delete' homework.pk %}" class="btn btn-danger" style="font-size: 15px;">삭제하기</a>
+        {% endif %}
+        
+      </div>
+      <div class="card-footer text-muted border-warning">
+        <h2 class="card-text">
+          제출 기간 : {{ homework.endDate }}
+        </h2>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% endblock %}

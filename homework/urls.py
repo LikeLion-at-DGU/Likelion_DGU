@@ -12,4 +12,8 @@ urlpatterns = [
   path('<int:assignment_id>/edit', edit_assign, name="edit_assign"),
   path('admin_writehw/', admin_writehw, name='admin_writehw'),
   path('admin_createhw/', admin_createhw, name="admin_createhw"),
+  path('homeworklist/', admin_showlist, name="admin_showlist"),
+  path('hwDetail/<int:homework_id>', admin_showdetail, name="admin_showdetail"),
+  path('hwDelete/<int:homework_id>', admin_delete, name="admin_delete"),
+  path('hwEdit/<int:homework_id>', admin_edit, name="admin_edit"),
 ]
