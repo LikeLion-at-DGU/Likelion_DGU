@@ -5,64 +5,31 @@
 <link rel="stylesheet" href="{% static 'css/hw_detail.css' %}"/>
 
 <section id="section" class="d-flex flex-wrap align-content-center">
-  <div class="container">
-    <div class="homework" style="width: 100%;
-    height: 400px;
-    background-color: #c4c4c4;
-    border-radius: 10px;">
-      <div class="row g-3 align-items-center mb-4">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">제목 : </div>
-        </div>
-        <div class="col-7">
-          <div style="font-size: 16px">{{ assign.title }}</div>
-        </div>
+  <div class="container" style="font-family: 'Jua', sans-serif;">
+    <div class="card text-center border-warning">
+      <div class="card-header border-warning">
+        <h1>{{ assign.hw_id }}</h1>
+        <h3>{{ assign.writer }}</h3>
       </div>
-      <div class="row g-3 align-items-center mb-4">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">과제 차시 : </div>
-        </div>
-        <div class="col-7">
-          <div style="font-size: 16px">{{ assign.hw_id }}</div>
-        </div>
+      <div class="card-body border-warning">
+        <h2 class="card-title">{{ assign.title }}</h2>
+        <h3 class="card-text">{{ assign.url }}</h3>
+        <h3 class="card-text">{{ assign.contents }}</h3>
+        {% if user == assign.writer %}
+          <!-- Edit Homework -->
+          <a href="{% url 'homework:edit_assign' assign.pk %}" class="btn btn-warning" style="font-size: 15px;">수정하기</a>
+          <!-- Delete Homework -->
+          <a href="{% url 'homework:delete_assign' assign.pk %}" class="btn btn-danger" style="font-size: 15px;">삭제하기</a>
+        {% endif %}
+        
       </div>
-      <div class="row g-3 align-items-center mb-4">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">url : </div>
-        </div>
-        <div class="col-7">
-          <div style="font-size: 16px">{{ assign.url }}</div>
-        </div>
+      <div class="card-footer text-muted border-warning">
+        <h2 class="card-text">
+          작성시간 : {{ assign.pub_date }} | 
+          수정시간 : {{ assign.edit_date }}</h2>
       </div>
-      <div class="row g-3 align-items-center">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">내용 : </div>
-        </div>
-        <div class="col-7 form-floating">
-          <div style="font-size: 16px">{{ assign.contents }}</div>
-        </div>
-      </div>
-      <div class="row g-3 align-items-center">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">작성시각 : </div>
-        </div>
-        <div class="col-7 form-floating">
-          <div style="font-size: 16px">{{ assign.pub_date }}</div>
-        </div>
-      </div>
-      <div class="row g-3 align-items-center">
-        <div class="col-3">
-          <div class="left_area" style="font-size: 16px">수정시각 :</div>
-        </div>
-        <div class="col-7 form-floating">
-          <div style="font-size: 16px">{{ assign.edit_date }}</div> 
-        </div>
-      </div>
-      <!-- Delete Homework -->
-      <a href="{% url 'homework:delete_assign' assign.pk %}" class="btn btn- danger">삭제하기</a>
-      <!-- Edit Homework -->
-      <a href="{% url 'homework:edit_assign' assign.pk %}" class="btn btn- primary">수정하기</a>
     </div>
+    
   </div>
 </section>
 
