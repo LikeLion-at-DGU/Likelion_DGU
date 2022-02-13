@@ -10,7 +10,7 @@
       <h1 class="card-header border-warning">{{homework.title}}</h1>
       <div class="card-body border-warning">
         <!-- <h2 class="card-title">{{homework.contents}}</h2> -->
-        <form method="POST" action="{% url 'homework:createassign' %}">
+        <form method="POST" action="{% url 'homework:createassign' %}" enctype="multipart/form-data">
           {% csrf_token %} {{ form.as_p }}
           <div class="row">
             <div class="col-sm-7">
@@ -30,6 +30,8 @@
                   </select>
                   <br>
                   <input type="text" name="url" class="form-control input_area" placeholder="url을 입력하세요"/>
+                  <br>
+                  <input type="file" name="image" class="form-control input_area" placeholder="사진을 첨부하세요"/>
                   <br>
                   <textarea name="contents" class="form-control input_area" style="height: 100px">메모</textarea>
                 </div>

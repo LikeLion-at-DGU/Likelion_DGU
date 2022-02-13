@@ -15,6 +15,11 @@
         <h2 class="card-title">{{ assign.title }}</h2>
         <h3 class="card-text">{{ assign.url }}</h3>
         <h3 class="card-text">{{ assign.contents }}</h3>
+        {% if assign.image %}
+          <p>
+            <img src="{{ assign.image.url }}" style="width: 250px" />
+          </p>
+        {% endif %}
         {% if user == assign.writer %}
           <!-- Edit Homework -->
           <a href="{% url 'homework:edit_assign' assign.pk %}" class="btn btn-warning" style="font-size: 15px;">수정하기</a>

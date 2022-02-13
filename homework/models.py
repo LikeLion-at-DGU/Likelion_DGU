@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -25,6 +26,7 @@ class Assignment(models.Model):
   contents = models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
   edit_date = models.DateTimeField(auto_now=True)
+  image = models.ImageField(upload_to="homework/", blank=True, null=True)
   
   def date_summary(self):
     return str(self.pub_date)[0:11]

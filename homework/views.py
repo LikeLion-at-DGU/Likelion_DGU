@@ -42,6 +42,7 @@ def createassign(request):
     new_as.url = request.POST.get('url')
     new_as.pub_date = timezone.now()
     new_as.contents = request.POST.get('contents')
+    new_as.image = request.FILES.get('image')
     homeworkId = request.POST.get('hw_id')
     new_as.hw_id = get_object_or_404(Homework, id=homeworkId)
     new_as.save()
@@ -68,6 +69,7 @@ def edit_assign(request, assignment_id):
       assign.title = request.POST['title']
       assign.url = request.POST['url']
       assign.contents = request.POST['contents']
+      assign.image = request.FILES['image']
       assign.save()
       return redirect('homework:showdetail', assign.id )
   return render(request, 'hw_edit.html', { 'assign':assign })
