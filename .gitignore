@@ -7,6 +7,7 @@ www_dir/.static_root
 
 .DS_Store
 .idea/
+db.sqlite3
 
 # Created by https://www.gitignore.io/api/django,python
 # Edit at https://www.gitignore.io/?templates=django,python
