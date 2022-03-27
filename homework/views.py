@@ -38,6 +38,7 @@ def createassign(request):
   if request.method == "POST":
     new_as = Assignment()
     new_as.title = request.POST.get('title')
+    new_as.writer_name = request.user.last_name + request.user.first_name 
     new_as.writer = request.user
     new_as.url = request.POST.get('url')
     new_as.pub_date = timezone.now()
