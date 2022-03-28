@@ -32,11 +32,7 @@
               style="cursor: pointer">
               <td scope="row">{{ assign.id }}</td>
               <td>{{ assign.hw_id }}</td>
-              {% if writer_name == "" %}
-                <td>{{ assign.writer }}</td>
-              {% else %}
-                <td>{{ assign.writer_name}}</td>
-              {% endif %}
+              <td>{{ assign.writer_name}}</td>
               <td>{{ assign.title }}</td>
               <td>{{ assign.date_summary }}</td>
             </tr>
@@ -49,11 +45,7 @@
             >
               <td scope="row">{{ assign.id }}</td>
               <td>{{ assign.hw_id }}</td>
-              {% if writer_name == "" %}
-                <td>{{ assign.writer }}</td>
-              {% else %}
-                <td>{{ assign.writer_name}}</td>
-              {% endif %}
+              <td>{{ assign.writer_name}}</td>
               <td>{{ assign.title }}</td>
               <td>{{ assign.date_summary }}</td>
             </tr>
