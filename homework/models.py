@@ -22,7 +22,6 @@ class Assignment(models.Model):
   hw_id = models.ForeignKey(Homework, on_delete=models.CASCADE, db_column="hw_id")
   title = models.CharField(max_length=200)
   writer = models.ForeignKey(User, on_delete=models.CASCADE)
-  writer_name = models.CharField(max_length=100, null=True, default="")
   url = models.URLField(max_length=200)
   contents = models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
